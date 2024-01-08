@@ -8,6 +8,7 @@ RUN npm install
 
 # Go to backend directory 
 WORKDIR /backend/
+
 # Install all backend dependencies
 RUN npm install
 
