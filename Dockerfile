@@ -1,20 +1,31 @@
 FROM node:20
 
 # Copy all files into container
-COPY . .
+COPY /package.json /app/package.json
+COPY /package-lock.json /app/package-lock.json
+
+COPY /backend/package.json /app/backend/package.json
+COPY /backend/package-lock.json /app/backend/package-lock.json
+
+# Inside app directory
+WORKDIR /app/
 
 # Install NextJs 
 RUN npm install
 
 # Go to backend directory 
-WORKDIR /backend/
+WORKDIR /app/backend/
 
 # Install all backend dependencies
 RUN npm install
 
+# Copy all files into app directory
+COPY . /app/
+
+
 #Switch back to main directory
-WORKDIR /
+WORKDIR /app
 
 # Define the commands to run application
-CMD [ "sh", "-c", "cd .. && npm run dev & cd backend  && npm start" ]
+CMD [ "sh", "-c", "npm run dev & cd backend  && npm start" ]
 
