@@ -1,9 +1,10 @@
 FROM node:20
 
-# Copy all files into container
+# Copy package.json files into app directory
 COPY /package.json /app/package.json
 COPY /package-lock.json /app/package-lock.json
 
+# Copy backend package.json files into app directory
 COPY /backend/package.json /app/backend/package.json
 COPY /backend/package-lock.json /app/backend/package-lock.json
 
